@@ -1,10 +1,11 @@
 <template lang="">
-  <!-- 一级路由出口 -->
-  <router-view></router-view>
+  <div>
+    图表页
+  </div>
 </template>
 <script>
 export default {
-
+  name: 'home-page'
 }
 </script>
 <style lang="">

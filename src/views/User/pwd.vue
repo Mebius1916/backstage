@@ -1,10 +1,11 @@
 <template lang="">
-  <!-- 一级路由出口 -->
-  <router-view></router-view>
+  <div>
+    修改密码页
+  </div>
 </template>
 <script>
 export default {
-
+  name: 'pwd-page'
 }
 </script>
 <style lang="">

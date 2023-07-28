@@ -1,10 +1,11 @@
 <template lang="">
-  <!-- 一级路由出口 -->
-  <router-view></router-view>
+  <div>
+    头像页面
+  </div>
 </template>
 <script>
 export default {
-
+  name: 'avatar-page'
 }
 </script>
 <style lang="">
