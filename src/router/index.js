@@ -6,19 +6,19 @@ Vue.use(VueRouter)
 
 const routes = [
   /* 重定向 */
-  { path: '/', redirect: '/layout/home' },
+  { path: '/', redirect: '/home' },
   { path: '/register', component: () => import('@/views/Login/regiser.vue') },
   { path: '/login', component: () => import('@/views/Login/index.vue') },
   {
     path: '/layout',
     component: () => import('@/views/Layout/index.vue'),
     children: [
-      { path: 'home', component: () => import('@/views/Home/index.vue') },
-      { path: 'user', component: () => import('@/views/User/index.vue') },
-      { path: 'avatar', component: () => import('@/views/User/avatar.vue') },
-      { path: 'pwd', component: () => import('@/views/User/pwd.vue') },
-      { path: 'category', component: () => import('@/views/Article/category.vue') },
-      { path: 'article', component: () => import('@/views/Article/index.vue') }
+      { path: '/home', component: () => import('@/views/Home/index.vue') },
+      { path: '/user-info', component: () => import('@/views/User/index.vue') },
+      { path: '/user-avatar', component: () => import('@/views/User/avatar.vue') },
+      { path: '/user-pwd', component: () => import('@/views/User/pwd.vue') },
+      { path: '/art-cate', component: () => import('@/views/Article/category.vue') },
+      { path: '/art-list', component: () => import('@/views/Article/index.vue') }
     ]
   }
 ]
