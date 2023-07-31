@@ -59,40 +59,40 @@
     </el-card>
     <!-- 2.dialog弹窗是全屏的，所以要放在最外层盒子 -->
     <!-- 2.发表文章对话框 -->
-<el-dialog title="发表文章" :visible.sync="dialogVisible" fullscreen>
-  <!-- 对话框内容 -->
-  <el-form label-width="100px">
-    <!-- 2.1文章标题 -->
-    <el-form-item label="文章标题">
-      <el-input placeholder="请输入标题" v-model="addForm.title"></el-input>
-    </el-form-item>
-    <!-- 2.2文章分类 -->
-    <el-form-item label="文章分类">
-      <el-select v-model="addForm.cate_id" placeholder="请选择分类" style="width: 100%;" value="">
-        <el-option v-for="item in catList" :key="item.id" :label="item.cate_name" :value="item.id"></el-option>
-      </el-select>
-    </el-form-item>
-    <!-- 2.3文章内容 -->
-    <el-form-item label="文章内容">
-      <quillEditor v-model="addForm.content"></quillEditor>
-    </el-form-item>
-    <!-- 2.4文章封面 -->
-    <el-form-item label="文章封面">
-      <!-- 用来显示封面的图片 -->
-      <img src="@/assets/images/cover.jpg" alt="" class="cover-img" ref="imgRef"/>
-      <br />
-      <!-- 文件选择框，默认被隐藏 -->
-      <input @change="doChange" type="file" style="display: none;" accept="image/*" ref="iptFile"/>
-      <!-- 选择封面的按钮 -->
-      <el-button type="text" @click="$refs.iptFile.click()">+ 选择封面</el-button>
-    </el-form-item>
-    <!-- 2.5底部按钮 -->
-    <el-form-item>
-      <el-button type="primary" @click="doAdd('已发布')">发布</el-button>
-      <el-button type="info" @click="doAdd('草稿')">存为草稿</el-button>
-    </el-form-item>
-  </el-form>
-</el-dialog>
+    <el-dialog title="发表文章" :visible.sync="dialogVisible" fullscreen>
+      <!-- 对话框内容 -->
+      <el-form label-width="100px">
+        <!-- 2.1文章标题 -->
+        <el-form-item label="文章标题">
+          <el-input placeholder="请输入标题" v-model="addForm.title"></el-input>
+        </el-form-item>
+        <!-- 2.2文章分类 -->
+        <el-form-item label="文章分类">
+          <el-select v-model="addForm.cate_id" placeholder="请选择分类" style="width: 100%;" value="">
+            <el-option v-for="item in catList" :key="item.id" :label="item.cate_name" :value="item.id"></el-option>
+          </el-select>
+        </el-form-item>
+        <!-- 2.3文章内容 -->
+        <el-form-item label="文章内容">
+          <quillEditor v-model="addForm.content"></quillEditor>
+        </el-form-item>
+        <!-- 2.4文章封面 -->
+        <el-form-item label="文章封面">
+          <!-- 用来显示封面的图片 -->
+          <img src="@/assets/images/cover.jpg" alt="" class="cover-img" ref="imgRef"/>
+          <br />
+          <!-- 文件选择框，默认被隐藏 -->
+          <input @change="doChange" type="file" style="display: none;" accept="image/*" ref="iptFile"/>
+          <!-- 选择封面的按钮 -->
+          <el-button type="text" @click="$refs.iptFile.click()">+ 选择封面</el-button>
+        </el-form-item>
+        <!-- 2.5底部按钮 -->
+        <el-form-item>
+          <el-button type="primary" @click="doAdd('已发布')">发布</el-button>
+          <el-button type="info" @click="doAdd('草稿')">存为草稿</el-button>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -147,6 +147,11 @@ export default {
       // (2)绑定数据
       this.artList = data.data
       this.total = data.total
+      // (3)判断页码是否-1
+      if (this.query.pagenum > Math.ceil(this.total / this.query.pagesize)) {
+        this.query.pagenum--
+        this.initArtList()
+      }
     },
     // 2.选择图片文件预览
     doChange () {
